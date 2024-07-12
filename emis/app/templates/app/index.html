@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'app/style.css' %}">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <h1 class="h1">homepage</h1>
+
+
+
+        {% if request.user.is_superuser %}
+
+        <div class="form-container">
+
+        <h1 class="form-header">Form</h1>
+
+        <form method="post" class="form">
+            {% csrf_token %}
+            <div class="form-entry">
+                <label class="label" for="{{ form.course_name.id_for.label }}">Course Name</label>
+                    {{ form.course_name }}
+            </div>
+
+            <div class="form-entry">
+                <label class="label" for="{{ form.course_code.id_for.label }}">Course Code</label>
+                    {{ form.course_code }}
+            </div>
+
+            <div class="form-entry">
+                <label class="label" for="{{ form.start_time.id_for.label }}">Exam Start</label>
+                    {{ form.start_time }}
+            </div>
+
+            <div class="form-entry">
+                <label class="label" for="{{ form.end_time.id_for.label }}">Exam Ends</label>
+                    {{ form.end_time }}
+            </div>
+
+            <div class="form-entry">
+                <label class="label" for="{{ form.no_leave_start.id_for.label }}">No Leaving Start Duration</label>
+                    {{ form.no_leave_start }}
+            </div>
+
+            <div class="form-entry">
+                <label class="label" for="{{ form.no_leave_end.id_for.label }}">No Leaving End Duration</label>
+                    {{ form.no_leave_end }}
+            </div>
+
+            <button class="submit-button" type="submit">Submit</button>
+
+        </form>
+
+
+        {%endif%}
+
+
+
+
+        <script src="" async defer></script>
+    </body>
+</html>

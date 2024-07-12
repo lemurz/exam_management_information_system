@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="refresh" content="60">
+        <title>Exam Timer</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+
+        <script>
+        
+        function initializeTimer(startTime, endTime, noLeaveStart, noLeaveEnd){
+
+            const now = new Date().getTime();
+            const start = new Date(startTime).getTime();
+            const end = new Date(endTime).getTime();
+            const noLeaveStartTime = start + noLeaveStart * 1000;
+            const noLeaveEndTime = end + noLeaveEnd * 1000;
+
+            function updateTimer(){
+    
+                let status = '';
+                let timeRemaining = 0;
+                
+                if(now < start){
+                    status = 'Exam has not started yet';
+                    timeRemaining = start-now;
+                }
+                else if (now >= start && now <= end){
+                    status = 'Exam ongoing'
+                    timeRemaining = end-now;
+
+                    if(now < noLeaveStartTime || now > noLeaveEndTime){
+                        status+='(Leaving not allowed)';
+                    }
+                    else{
+                        status+='(Leaving is allowed)';
+                    }
+                }
+                else{
+                    status="Exam Finished";
+                }
+
+                document.getElementById('status').innerText = status;
+                document.getElementById('remaining_time').innerText = Math.floor(timeRemaining / 1000) + 'seconds';
+
+                if(timeRemaining > 0){
+                    setTimout(updateTimer, 1000);
+                }
+
+            }
+
+            updateTimer();
+
+        }
+        
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <h1>Exam Timer</h1>
+        <p>Module : {{ exam.course_code }}</p>
+        
+        <p id="status"></p>
+        <p id="remaining_time"></p>
+        <script src="" async defer></script>
+    </body>
+</html>
