@@ -85,10 +85,12 @@
             <div class="container-fluid">
                     <a class="navbar-brand" href="{% url '' %}"><img src="{% static 'app/images/Logo.jpg' %}" width='37.5' heigh="30">London South Bank University</img></a>
                 <ul class="navbar-nav">
+                    {% if request.user.is_superuser %}
                     <li class="nav-item"><a class="nav-link" href="{% url '' %}">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'create_exam' %}">Create Exam</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'admin:app_examlog_changelist' %}">Exam Logs</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}">Admin</a></li>
+                    {%endif%}
                 </ul>
             </div>
 
@@ -98,6 +100,7 @@
         <h1>Exam Timer</h1>
         </div>
 
+        {% if request.user.is_superuser %}
         <div class="d-flex justify-content-center">
             <div class="card text-center m-2" style="width : 25rem">
                 <div class="card-body">
@@ -114,6 +117,7 @@
         <h5 id="warning"></h5>
         <h6><a id="log-reminder" href="{% url 'admin:app_examlog_changelist' %}"></a></h6>
         </div>
+        {% endif %}
 
     </body>
 </html>

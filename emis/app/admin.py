@@ -2,7 +2,7 @@ from django.contrib import admin
 from . models import ExamLog
 
 # Register your models here.
-admin.site.site_header = 'IUT Invigilator Portal'
+admin.site.site_header = 'LSBU Invigilator Portal'
 
 class ExamLogAdmin(admin.ModelAdmin):
 
