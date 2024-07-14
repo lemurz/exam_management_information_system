@@ -7,10 +7,16 @@ class ExamLog(models.Model):
     course_code = models.CharField(max_length=100)
     student_count = models.CharField(max_length=100)
     additional_details = models.TextField(max_length=100)
-    log_time = timezone.now()
+    log_time = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name_plural = 'Exam Logs'
+
+    def save(self, *args, **kwargs):
+
+        local_time = timezone.localtime(timezone.now())
+        self.log_time = local_time
+        super().save(*args, **kwargs)
 
 class Exam(models.Model):
     course_name = models.CharField(max_length=100)
@@ -19,5 +25,6 @@ class Exam(models.Model):
     end_time = models.DateTimeField()
     no_leave_start = models.DurationField()
     no_leave_end = models.DurationField()
+
 
 
