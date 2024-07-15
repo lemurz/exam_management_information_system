@@ -71,6 +71,7 @@
             }
 
             const update = setInterval(updateTimer, 1000);
+            
 
         </script>
 
@@ -110,13 +111,14 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="p-5 m-2 border text-center bg-dark text-white">
         <h1 id="remaining-time"></h1>
         <h5 id="status"></h5>
         <h5 id="warning"></h5>
         <h6><a id="log-reminder" href="{% url 'admin:app_examlog_changelist' %}"></a></h6>
         </div>
+        
         {% endif %}
 
     </body>
